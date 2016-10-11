@@ -10,5 +10,5 @@ before_script:
   - ulimit -c unlimited -S
   
 script:
-  - ./build.sh
-  - ./upload.sh
+  - sudo ./build.sh
+  - sudo ./upload.sh
