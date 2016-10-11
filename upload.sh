@@ -1,5 +1,5 @@
 #!/bin/bash
-cd
+cd /root/
 tar -cf qemu.tar ./qemu/ && bzip2 --best qemu.tar
 mkdir page && cd page
 mv ../qemu.tar.bz2 ./
