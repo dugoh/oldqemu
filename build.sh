@@ -36,6 +36,8 @@ function slowcat {
 basename "$0"
 export noks=0
 
+cd
+
 (\
 check getting qemu source;       git clone https://github.com/qemu/qemu.git                   >/dev/null 2>&1 && ok || nok
 cd qemu
