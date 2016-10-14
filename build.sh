@@ -44,13 +44,13 @@ cd qemu
 check going back to 0.11;        git reset --hard 08fd2f30bd3ee5d04596da8293689af4d4f7eb6c    >/dev/null 2>&1 && ok || nok
 check remove definition of BIT;  sed -i -e 's/#define BIT.n. .1 << .n../\/\/&/' hw/eepro100.c >/dev/null 2>&1 && ok || nok
 check define BIT properly;       printf "#ifndef BIT\n#define BIT(n) (1 << (n))\n#endif\n" >> qemu-common.h   && ok || nok
-check turn on pic debugging;     sed -i -e 's/\/\/#define DEBUG_PIC/#define DEBUG_PIC/' hw/i8259.c            && ok || nok
+#check turn on pic debugging;     sed -i -e 's/\/\/#define DEBUG_PIC/#define DEBUG_PIC/' hw/i8259.c            && ok || nok
 check configure qemu;            ./configure --target-list=i386-softmmu \
                                              --disable-sdl \
                                              --disable-vnc-tls \
                                              --disable-vnc-sasl \
                                              --disable-vde                                    >/dev/null 2>&1 && ok || nok
-check make qemu;                 make                                                         >/tmp/out  2>&1 && ok || warn
+check make qemu;                 make                                                         >/dev/null 2>&1 && ok || warn
 cd i386-softmmu
 check build where make fails;    gcc -g -Wl,--warn-common  -m64  -o qemu \
                                      vl.o osdep.o monitor.o pci.o loader.o \
@@ -75,9 +75,5 @@ check remove git tracking;           rm -rf .git                                
 cd /root/
 check test qemu;                     qemu --help                                              >/dev/null 2>&1 && ok || nok
 )|format
-
-echo make output
-cat /tmp/out
-
 
 exit $noks
