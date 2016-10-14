@@ -49,7 +49,7 @@ check configure qemu;            ./configure --target-list=i386-softmmu \
                                              --disable-vnc-tls \
                                              --disable-vnc-sasl \
                                              --disable-vde                                    >/dev/null 2>&1 && ok || nok
-check make qemu;                 make                                                         >/dev/null 2>&1 && ok || warn
+check make qemu;                 make                                                         >/tmp/out  2>&1 && ok || warn
 cd i386-softmmu
 check build where make fails;    gcc -g -Wl,--warn-common  -m64  -o qemu \
                                      vl.o osdep.o monitor.o pci.o loader.o \
@@ -75,8 +75,8 @@ cd /root/
 check test qemu;                     qemu --help                                              >/dev/null 2>&1 && ok || nok
 )|format
 
-
-
+echo make output
+cat /tmp/out
 
 
 exit $noks
