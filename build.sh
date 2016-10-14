@@ -48,10 +48,10 @@ check configure qemu;            ./configure --target-list=i386-softmmu \
                                              --disable-sdl \
                                              --disable-vnc-tls \
                                              --disable-vnc-sasl \
-                                             --disable-vde --static                           >/dev/null 2>&1 && ok || nok
+                                             --disable-vde                                    >/dev/null 2>&1 && ok || nok
 check make qemu;                 make                                                         >/dev/null 2>&1 && ok || warn
 cd i386-softmmu
-check build where make fails;    gcc -g -Wl,--warn-common  -m64 -static -o qemu \
+check build where make fails;    gcc -g -Wl,--warn-common  -m64  -o qemu \
                                      vl.o osdep.o monitor.o pci.o loader.o \
                                      isa_mmio.o machine.o gdbstub.o gdbstub-xml.o \
                                      msix.o ioport.o virtio-blk.o \
