@@ -69,11 +69,11 @@ check build where make fails;    gcc -g -Wl,--warn-common  -m64  -o qemu \
                                      -Wl,--no-whole-archive \
                                      -lm -lrt -lpthread -lz -lutil -lncurses -ltinfo          >/dev/null 2>&1 && ok || nok
 cd ..
-check continue make qemu;            make                                                     >/dev/null 2>&1 && ok || nok
-check make install qemu;             sudo make install                                        >/dev/null 2>&1 && ok || nok
-check remove git tracking;           rm -rf .git                                              >/dev/null 2>&1 && ok || nok
+check continue make qemu;        make                                                         >/dev/null 2>&1 && ok || nok
+check make install qemu;         sudo make install                                            >/dev/null 2>&1 && ok || nok
+check remove git tracking;       rm -rf .git                                                  >/dev/null 2>&1 && ok || nok
 cd /root/
-check test qemu;                     qemu --help                                              >/dev/null 2>&1 && ok || nok
+check test qemu;                 qemu --help                                                  >/dev/null 2>&1 && ok || nok
 )|format
 
 exit $noks
